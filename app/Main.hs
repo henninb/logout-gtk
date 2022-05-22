@@ -137,7 +137,7 @@ main = do
   on btn7 #clicked $ do
     putStrLn "User choose: Lock"
     -- callCommand "slock"
-    callCommand "i3lock -d -c FFFFFF -i ~/backgrounds/mountain-road.jpg"
+    callCommand "i3lock -d -c FFFFFF -i ~/backgrounds/mountain-road.png"
     Gtk.mainQuit
 
   on win #keyPressEvent $ \keyEvent -> do
