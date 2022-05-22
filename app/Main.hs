@@ -141,7 +141,8 @@ main = do
 
   on win #keyPressEvent $ \keyEvent -> do
     key <- keyEvent `get` #keyval >>= GDK.keyvalToUnicode
-    putStrLn $ "Key pressed: ‘" ++ (chr (fromIntegral key) : []) ++ "’ (" ++ show key ++ ")"
+    -- putStrLn $ "Key pressed: ‘" ++ (chr (fromIntegral key) : []) ++ "’ (" ++ show key ++ ")"
+    putStrLn $ "Key pressed: (" ++ show key ++ ")"
     if key == 27 then Gtk.mainQuit else pure ()
     return False
 
