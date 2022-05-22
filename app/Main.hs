@@ -138,6 +138,7 @@ main = do
     putStrLn "User choose: Lock"
     -- callCommand "slock"
     callCommand "i3lock -d -c FFFFFF -i ~/backgrounds/mountain-road.jpg"
+    Gtk.mainQuit
 
   on win #keyPressEvent $ \keyEvent -> do
     key <- keyEvent `get` #keyval >>= GDK.keyvalToUnicode
