@@ -2,9 +2,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
--- import Lib
-
--- import qualified GI.Cairo
 import Data.GI.Base
 import qualified GI.Gtk as Gtk
 import qualified GI.Gdk as GDK
@@ -13,46 +10,7 @@ import System.Posix.User
 import System.Process
 import Data.Text as Text
 import Data.Char (chr)
--- import qualified Records as R
 
--- foo :: IO Bool
--- foo :: true
-
-
-
--- handleKeyPress k = do
---     kv <- managedForeignPtr k
---     -- putStrLn $ "key pressed: 0x" ++ kv ""
---     -- bool (return ()) Gtk.mainQuit $ kv == 0x71
---     return ()
-
-
--- addKeyboardEventHandler :: R.Application -> IO ()
--- addKeyboardEventHandler
---   application@R.Application
---     { R.guiObjects =
---         R.GuiObjects
---           { R.window = window
---           }
---     }
---   =
---   void $
---     Gtk.onWidgetKeyPressEvent window $
---       keyboardEventHandler application
-
--- entryHandler :: (Text -> Event) -> GDK.EventKey -> Entry -> IO (Bool, Event)
---   entryHandler handleFun eventKey entry = do
---     key <- getEventKeyString eventKey
---     case key of
---       Just "\ESC" -> return (True, Closed)
---       Just "\r" -> do
---         msg <- entryGetText entry
---         entrySetText entry ""
-
---         if Text.null msg
---           then return (True, Ignore)
---           else return (True, handleFun msg)
---       _ -> return (False, Ignore)
 showKeys :: GDK.EventKey -> IO Bool
 showKeys eventKey = do
     eventType <- GDK.getEventKeyType eventKey
@@ -81,7 +39,6 @@ main = do
 
   home <- getHomeDirectory
   user <- getEffectiveUserName
-  -- myKey <- showKeys
 
   win <- Gtk.windowNew Gtk.WindowTypeToplevel
   Gtk.setContainerBorderWidth win 10
@@ -92,16 +49,6 @@ main = do
   Gtk.setWindowWindowPosition win Gtk.WindowPositionCenter
   Gtk.windowSetDecorated win False
 
-
-  -- destroyE <- signalE0 window #destroy
-  -- reactimate $ mainQuit <$ destroyE
-
-  -- keyPressE <- signalE1R win #keyPressEvent False
-  --   reactimate $ (\e -> get e #string >>= print) <$> keyPressE
-
- -- ##keyPressEvent
- -- ("keyPressEvent", Gtk.Widget.WidgetKeyPressEventSignalInfo)
-
   img1 <- Gtk.imageNewFromFile $ home ++ "/.local/img/cancel.png"
   img2 <- Gtk.imageNewFromFile $ home ++ "/.local/img/logout.png"
   img3 <- Gtk.imageNewFromFile $ home ++ "/.local/img/reboot.png"
@@ -109,31 +56,6 @@ main = do
   img5 <- Gtk.imageNewFromFile $ home ++ "/.local/img/suspend.png"
   img6 <- Gtk.imageNewFromFile $ home ++ "/.local/img/hibernate.png"
   img7 <- Gtk.imageNewFromFile $ home ++ "/.local/img/lock.png"
-
-  -- | A simple keystroke event handler for our message input widget.
--- If escape is pressed, the client application is closed.
--- If the enter button (\r) is pressed, we send the current contents of the
--- input widget as a messages to the server.
-  -- win <- new Gtk.Window [ ##title := "Hi there" ]
-  --   -- _ <- on win ##destroy G.mainQuit
-  -- _ <- on win ##keyPressEvent \(EventKey k) -> True <$ do
-        -- kv <- foo $ managedForeignPtr k
-        -- putStrLn $ "key pressed: 0x" ++ showHex kv ""
-        -- bool (return ()) G.mainQuit $ kv == 0x71
-
-  -- let myhandle :: Word32 -> Word32 -> [GDK.ModifierType] -> IO Bool
-  --     myhandle = \keyval keycode state -> do
-  --       name <- Gtk.acceleratorName keyval state
-  --       case Text.unpack name of
-  --         -- "Escape" -> do GTK.mainQuit
-  --         --                return True
-  --         _        -> keyhandler name >> Gtk.widgetQueueDraw canvas >> return True
-  --       return True
-
-
-  -- controller <- new Gtk.EventControllerKey [On #keyPressed myhandle]
-  -- #addController window controller
-
 
 
   label1 <- Gtk.labelNew Nothing
@@ -220,35 +142,13 @@ main = do
   on win #keyPressEvent $ \keyEvent -> do
     key <- keyEvent `get` #keyval >>= GDK.keyvalToUnicode
     putStrLn $ "Key pressed: ‘" ++ (chr (fromIntegral key) : []) ++ "’ (" ++ show key ++ ")"
-    -- bool (return ()) Gtk.mainQuit $ key == 0x71
+    if key == 27 then Gtk.mainQuit else pure ()
     return False
-
-  -- on win #keyPressEvent $ do
-  --   callCommand "reboot"
-    -- keyVal <- eventKeyVal
-    -- keyName <- Gtk.eventKeyName
-    -- Gtk.mainQuit
-    -- mods <- GDK.eventModifier
-    -- kv <- GDK.eventKeyVal
-    -- putStrLn "key prssed"
-    -- return True
-    -- result <- true
-    -- if result then putStrLn "yes" else return ()
-    -- pure True
-    -- return (True)
-  -- on win #keyPressEvent $ do
-  --   keyVal <- Gtk.eventKeyVal
-  --   case keyVal of
-  --     0xff1b -> liftIO $ cancelAction >> return True
-  --     _      -> return False
-
 
   grid <- Gtk.gridNew
   Gtk.gridSetColumnSpacing grid 10
   Gtk.gridSetRowSpacing grid 10
   Gtk.gridSetColumnHomogeneous grid True
-
-  -- #keyPressEvent handleKeyPress
 
   -- #keyPressEvent \(EventKey k) -> True <$ do
   --   kv <- foo $ managedForeignPtr k
