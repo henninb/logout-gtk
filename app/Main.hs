@@ -12,6 +12,7 @@ import System.Directory
 import System.Posix.User
 import System.Process
 import Data.Text as Text
+import Data.Char (chr)
 -- import qualified Records as R
 
 -- foo :: IO Bool
@@ -101,13 +102,13 @@ main = do
  -- ##keyPressEvent
  -- ("keyPressEvent", Gtk.Widget.WidgetKeyPressEventSignalInfo)
 
-  img1 <- Gtk.imageNewFromFile $ home ++ "/projects/byebye/img/cancel.png"
-  img2 <- Gtk.imageNewFromFile $ home ++ "/projects/byebye/img/logout.png"
-  img3 <- Gtk.imageNewFromFile $ home ++ "/projects/byebye/img/reboot.png"
-  img4 <- Gtk.imageNewFromFile $ home ++ "/projects/byebye/img/shutdown.png"
-  img5 <- Gtk.imageNewFromFile $ home ++ "/projects/byebye/img/suspend.png"
-  img6 <- Gtk.imageNewFromFile $ home ++ "/projects/byebye/img/hibernate.png"
-  img7 <- Gtk.imageNewFromFile $ home ++ "/projects/byebye/img/lock.png"
+  img1 <- Gtk.imageNewFromFile $ home ++ "/.local/img/cancel.png"
+  img2 <- Gtk.imageNewFromFile $ home ++ "/.local/img/logout.png"
+  img3 <- Gtk.imageNewFromFile $ home ++ "/.local/img/reboot.png"
+  img4 <- Gtk.imageNewFromFile $ home ++ "/.local/img/shutdown.png"
+  img5 <- Gtk.imageNewFromFile $ home ++ "/.local/img/suspend.png"
+  img6 <- Gtk.imageNewFromFile $ home ++ "/.local/img/hibernate.png"
+  img7 <- Gtk.imageNewFromFile $ home ++ "/.local/img/lock.png"
 
   -- | A simple keystroke event handler for our message input widget.
 -- If escape is pressed, the client application is closed.
@@ -215,6 +216,12 @@ main = do
     putStrLn "User choose: Lock"
     -- callCommand "slock"
     callCommand "i3lock -d -c FFFFFF -C -i ~/backgrounds/mountain-road.jpg"
+
+  on win #keyPressEvent $ \keyEvent -> do
+    key <- keyEvent `get` #keyval >>= GDK.keyvalToUnicode
+    putStrLn $ "Key pressed: ‘" ++ (chr (fromIntegral key) : []) ++ "’ (" ++ show key ++ ")"
+    -- bool (return ()) Gtk.mainQuit $ key == 0x71
+    return False
 
   -- on win #keyPressEvent $ do
   --   callCommand "reboot"
