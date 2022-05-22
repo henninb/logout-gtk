@@ -1,5 +1,9 @@
 #!/bin/sh
 
-stack run
+mkdir -p src
+# stack run
+
+stack build
+stack install
 
 exit 0
