@@ -93,9 +93,10 @@ main = do
   Gtk.widgetSetHexpand btn2 False
   on btn2 #clicked $ do
     putStrLn "User choose: Logout"
-    --callCommand $ "pkill -u " ++ user
+    -- callCommand $ "pkill -u " ++ user
     -- callCommand "killall xmonad-x86_64-linux"
-    callCommand "pkill -v xmonad"
+    -- callCommand "pkill -v xmonad"
+    callCommand "pkill -f xmonad-start"
 
   btn3 <- Gtk.buttonNew
   Gtk.buttonSetRelief btn3 Gtk.ReliefStyleNone
