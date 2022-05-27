@@ -1,6 +1,6 @@
-name:                byebye
+name:                logout-gtk
 version:             0.1.0.0
-github:              "githubuser/byebye"
+github:              "githubuser/logout-gtk"
 license:             GPL-3
 author:              ""
 maintainer:          ""
@@ -33,18 +33,18 @@ library:
   source-dirs: src
 
 executables:
-  byebye-exe:
+  logout-gtk:
     main:                Main.hs
-    source-dirs:         app
+    source-dirs:         src
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - byebye
+    - logout-gtk
 
 tests:
-  byebye-test:
+  logout-gtk-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -52,4 +52,4 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - byebye
+    - logout-gtk

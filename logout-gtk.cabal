@@ -4,11 +4,11 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           byebye
+name:           logout-gtk
 version:        0.1.0.0
 description:    Please see the README on GitHub at <https://github.com/githubuser/byebye#readme>
-homepage:       https://github.com/githubuser/byebye#readme
-bug-reports:    https://github.com/githubuser/byebye/issues
+homepage:       https://github.com/githubuser/logout-gtk#readme
+bug-reports:    https://github.com/githubuser/logout-gtk/issues
 license:        GPL-3
 build-type:     Simple
 extra-source-files:
@@ -16,11 +16,13 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/byebye
+  location: https://github.com/githubuser/logout-gtk
 
 library
+  exposed-modules:
+      Main
   other-modules:
-      Paths_byebye
+      Paths_logout_gtk
   hs-source-dirs:
       src
   build-depends:
@@ -35,42 +37,42 @@ library
     , unix
   default-language: Haskell2010
 
-executable byebye-exe
+executable logout-gtk
   main-is: Main.hs
   other-modules:
-      Paths_byebye
+      Paths_logout_gtk
   hs-source-dirs:
-      app
+      src
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
-    , byebye
     , directory
     , gi-gdk
     , gi-gtk ==3.0.*
     , gi-gtk-hs
     , haskell-gi-base
+    , logout-gtk
     , process
     , text
     , unix
   default-language: Haskell2010
 
-test-suite byebye-test
+test-suite logout-gtk-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Paths_byebye
+      Paths_logout_gtk
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
-    , byebye
     , directory
     , gi-gdk
     , gi-gtk ==3.0.*
     , gi-gtk-hs
     , haskell-gi-base
+    , logout-gtk
     , process
     , text
     , unix
