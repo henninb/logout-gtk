@@ -6,8 +6,8 @@ author:              ""
 maintainer:          ""
 copyright:           ""
 
-extra-source-files:
-- README.md
+# extra-source-files:
+# - README.md
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package

@@ -11,8 +11,6 @@ homepage:       https://github.com/githubuser/logout-gtk#readme
 bug-reports:    https://github.com/githubuser/logout-gtk/issues
 license:        GPL-3
 build-type:     Simple
-extra-source-files:
-    README.md
 
 source-repository head
   type: git
