@@ -42,7 +42,7 @@ main = do
 
   win <- Gtk.windowNew Gtk.WindowTypeToplevel
   Gtk.setContainerBorderWidth win 10
-  Gtk.setWindowTitle win "ByeBye"
+  Gtk.setWindowTitle win "logout-gtk"
   Gtk.setWindowResizable win False
   Gtk.setWindowDefaultWidth win 750
   Gtk.setWindowDefaultHeight win 225
