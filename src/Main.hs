@@ -1,25 +1,28 @@
 {-# LANGUAGE OverloadedLabels  #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE PatternSynonyms #-}
+
 module Main where
 
 import Data.GI.Base
 import qualified GI.Gtk as Gtk
-import qualified GI.Gdk as GDK
+-- import qualified GI.Gdk as GDK
+import GI.Gdk (screenGetDefault, keyvalToUnicode, getEventKeyType, getEventKeyString, getEventKeyLength, getEventKeyHardwareKeycode, getEventKeyIsModifier, keyvalToUnicode, getEventKeyKeyval, getEventKeyState)
 import System.Directory
 import System.Posix.User
 import System.Process
 import Data.Text as Text
 import Data.Char (chr)
 
-showKeys :: GDK.EventKey -> IO Bool
+-- showKeys :: EventKey -> IO Bool
 showKeys eventKey = do
-    eventType <- GDK.getEventKeyType eventKey
-    maybeString <- GDK.getEventKeyString eventKey
-    modifiers <- GDK.getEventKeyState eventKey
-    len <- GDK.getEventKeyLength eventKey
-    keyval <- GDK.getEventKeyKeyval eventKey
-    isMod <- GDK.getEventKeyIsModifier eventKey
-    keycode <- GDK.getEventKeyHardwareKeycode eventKey
+    eventType <- getEventKeyType eventKey
+    maybeString <- getEventKeyString eventKey
+    modifiers <- getEventKeyState eventKey
+    len <- getEventKeyLength eventKey
+    keyval <- getEventKeyKeyval eventKey
+    isMod <- getEventKeyIsModifier eventKey
+    keycode <- getEventKeyHardwareKeycode eventKey
 
     putStrLn "key press event:"
     -- putStrLn $ "  type = " <> eventType
@@ -142,7 +145,7 @@ main = do
     Gtk.mainQuit
 
   on win #keyPressEvent $ \keyEvent -> do
-    key <- keyEvent `get` #keyval >>= GDK.keyvalToUnicode
+    key <- keyEvent `get` #keyval >>= keyvalToUnicode
     -- putStrLn $ "Key pressed: ‘" ++ (chr (fromIntegral key) : []) ++ "’ (" ++ show key ++ ")"
     putStrLn $ "Key pressed: (" ++ show key ++ ")"
     if key == 27 then Gtk.mainQuit else pure ()
