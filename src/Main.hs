@@ -4,17 +4,16 @@
 
 module Main where
 
-import Data.GI.Base
+import Data.GI.Base (on, get)
 import qualified GI.Gtk as Gtk
--- import qualified GI.Gdk as GDK
 import GI.Gdk (screenGetDefault, keyvalToUnicode, getEventKeyType, getEventKeyString, getEventKeyLength, getEventKeyHardwareKeycode, getEventKeyIsModifier, keyvalToUnicode, getEventKeyKeyval, getEventKeyState)
-import System.Directory
-import System.Posix.User
-import System.Process
-import Data.Text as Text
+import System.Directory (getHomeDirectory)
+import System.Posix.User (getEffectiveUserName)
+import System.Process (callCommand)
 import Data.Char (chr)
+import GI.Gdk.Structs.EventKey (EventKey)
 
--- showKeys :: EventKey -> IO Bool
+showKeys :: EventKey -> IO Bool
 showKeys eventKey = do
     eventType <- getEventKeyType eventKey
     maybeString <- getEventKeyString eventKey
