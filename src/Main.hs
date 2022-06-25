@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedLabels  #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE PatternSynonyms #-}
+-- {-# LANGUAGE PatternSynonyms #-}
 
 module Main where
 
