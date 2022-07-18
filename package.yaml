@@ -8,15 +8,18 @@ copyright:           ""
 description:         Please see the README
 
 dependencies:
-- base >= 4.7 && < 5
+- base >= 4.11 && < 5
 - directory
 - gi-gtk == 3.0.*
 - gi-gdk
 - gi-gtk-hs
+# - haskell-gi-base == 0.25.0
 - haskell-gi-base
 - process
 - unix
 - text
+- gi-harfbuzz == 0.0.6
+- gi-freetype2
 
 library:
   source-dirs: src

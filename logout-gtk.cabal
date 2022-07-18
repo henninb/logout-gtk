@@ -24,11 +24,13 @@ library
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      base >=4.11 && <5
     , directory
+    , gi-freetype2
     , gi-gdk
     , gi-gtk ==3.0.*
     , gi-gtk-hs
+    , gi-harfbuzz ==0.0.6
     , haskell-gi-base
     , process
     , text
@@ -43,11 +45,13 @@ executable logout-gtk
       src
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      base >=4.11 && <5
     , directory
+    , gi-freetype2
     , gi-gdk
     , gi-gtk ==3.0.*
     , gi-gtk-hs
+    , gi-harfbuzz ==0.0.6
     , haskell-gi-base
     , logout-gtk
     , process
@@ -64,11 +68,13 @@ test-suite logout-gtk-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      base >=4.11 && <5
     , directory
+    , gi-freetype2
     , gi-gdk
     , gi-gtk ==3.0.*
     , gi-gtk-hs
+    , gi-harfbuzz ==0.0.6
     , haskell-gi-base
     , logout-gtk
     , process
