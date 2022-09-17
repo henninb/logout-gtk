@@ -12,6 +12,7 @@ import System.Posix.User (getEffectiveUserName)
 import System.Process (callCommand)
 import Data.Char (chr)
 import GI.Gdk.Structs.EventKey (EventKey)
+import System.Info (os)
 
 showKeys :: EventKey -> IO Bool
 showKeys eventKey = do
@@ -116,6 +117,11 @@ main = do
   on btn4 #clicked $ do
     putStrLn "User choose: Shutdown"
     callCommand "sudo shutdown -h now"
+
+    case os of
+          "freebsd"   -> callCommand "sudo shutdown -p now"
+          "linux"   -> callCommand "sudo shutdown -h now"
+          _    -> callCommand "sudo shutdown -h now"
 
   btn5 <- Gtk.buttonNew
   Gtk.buttonSetRelief btn5 Gtk.ReliefStyleNone
