@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sudo pacman -S gobject-introspection
 mkdir -p src
 # stack run
 
