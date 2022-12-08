@@ -1,6 +1,7 @@
 #!/bin/sh
 
 sudo pacman --noconfirm --needed -S gobject-introspection
+sudo dnf install -y gobject-introspection-devel
 mkdir -p src
 # stack run
 
