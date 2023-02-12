@@ -12,6 +12,9 @@ if command -v dnf; then
   sudo dnf install -y pango-devel
   sudo dnf install -y gtk3-devel
 fi
+
+sudo xbps-install -y gobject-introspection
+
 mkdir -p src
 # stack run
 
