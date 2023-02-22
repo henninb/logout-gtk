@@ -4,6 +4,8 @@ if command -v pacman; then
   sudo pacman --noconfirm --needed -S gobject-introspection
 fi
 
+sudo apt install -y gobject-introspection
+
 if command -v dnf; then
   sudo dnf install -y gobject-introspection-devel
   sudo dnf install -y cairo-gobject-devel
