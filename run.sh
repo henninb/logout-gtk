@@ -2,6 +2,7 @@
 
 if command -v pacman; then
   sudo pacman --noconfirm --needed -S gobject-introspection
+  sudo pacman --noconfirm --needed -S gobject-introspection-runtime
 elif command -v apt; then
   sudo apt install -y gobject-introspection
   sudo apt install -y libatk1.0-dev
