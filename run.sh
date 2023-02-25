@@ -4,6 +4,9 @@ if command -v pacman; then
   sudo pacman --noconfirm --needed -S gobject-introspection
   sudo pacman --noconfirm --needed -S gobject-introspection-runtime
   sudo pacman --noconfirm --needed -S gdk-pixbuf2
+  sudo pacman --noconfirm --needed -S harfbuzz
+  sudo pacman --noconfirm --needed -S harfbuzz-cairo
+  # gdk-pixbuf-xlib
 elif command -v apt; then
   sudo apt install -y gobject-introspection
   sudo apt install -y libatk1.0-dev
