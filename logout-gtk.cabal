@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.35.1.
 --
 -- see: https://github.com/sol/hpack
 
@@ -26,11 +26,9 @@ library
   build-depends:
       base >=4.11 && <5
     , directory
-    , gi-freetype2
     , gi-gdk
     , gi-gtk ==3.0.*
     , gi-gtk-hs
-    , gi-harfbuzz ==0.0.6
     , haskell-gi-base
     , process
     , text
@@ -47,11 +45,9 @@ executable logout-gtk
   build-depends:
       base >=4.11 && <5
     , directory
-    , gi-freetype2
     , gi-gdk
     , gi-gtk ==3.0.*
     , gi-gtk-hs
-    , gi-harfbuzz ==0.0.6
     , haskell-gi-base
     , logout-gtk
     , process
@@ -70,11 +66,9 @@ test-suite logout-gtk-test
   build-depends:
       base >=4.11 && <5
     , directory
-    , gi-freetype2
     , gi-gdk
     , gi-gtk ==3.0.*
     , gi-gtk-hs
-    , gi-harfbuzz ==0.0.6
     , haskell-gi-base
     , logout-gtk
     , process

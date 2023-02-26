@@ -18,8 +18,9 @@ dependencies:
 - process
 - unix
 - text
-- gi-harfbuzz == 0.0.6
-- gi-freetype2
+# - haskell-gi == 0.26.3
+# - gi-harfbuzz == 0.0.6
+# - gi-freetype2
 
 library:
   source-dirs: src
