@@ -7,6 +7,9 @@ if command -v pacman; then
   sudo pacman --noconfirm --needed -S harfbuzz
   sudo pacman --noconfirm --needed -S harfbuzz-cairo
   # gdk-pixbuf-xlib
+elif command -v zypper; then
+  sudo zypper install -y gobject-introspection-devel
+  sudo zypper install -y pango-devel
 elif command -v apt; then
   sudo apt install -y gobject-introspection
   sudo apt install -y libatk1.0-dev
