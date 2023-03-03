@@ -7,6 +7,8 @@ if command -v pacman; then
   sudo pacman --noconfirm --needed -S harfbuzz
   sudo pacman --noconfirm --needed -S harfbuzz-cairo
   # gdk-pixbuf-xlib
+elif command -v emerge; then
+  sudo emerge --update --newuse harfbuzz
 elif command -v zypper; then
   sudo zypper install -y gobject-introspection-devel
   sudo zypper install -y pango-devel
