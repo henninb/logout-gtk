@@ -1,6 +1,6 @@
 FROM haskell
 
-RUN stack update
+#RUN stack update
 
 RUN apt update -y
 RUN apt install -y gobject-introspection
