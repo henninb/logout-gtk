@@ -47,8 +47,4 @@ echo stack build gi-harfbuzz
 stack build
 stack install
 
-docker build
-docker-compose up -d
-docker exec -it --user henninb haskell-server /bin/bash
-
 exit 0
