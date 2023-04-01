@@ -17,6 +17,7 @@ elif [ "$OS" = "Linux Mint" ] || [ "$OS" = "Ubuntu" ] || [ "$OS" = "Raspbian GNU
   sudo apt install -y libgtk-3-dev
 elif [ "$OS" = "Void" ]; then
   sudo xbps-install -y gobject-introspection
+  sudo xbps-install -y harfbuzz
 elif [ "$OS" = "FreeBSD" ]; then
   echo "sudo pkg install -y"
 elif [ "$OS" = "Solus" ]; then
