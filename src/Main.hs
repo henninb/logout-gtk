@@ -1,6 +1,5 @@
 {-# LANGUAGE OverloadedLabels  #-}
 {-# LANGUAGE OverloadedStrings #-}
--- {-# LANGUAGE PatternSynonyms #-}
 
 module Main where
 
@@ -25,15 +24,7 @@ showKeys eventKey = do
     keycode <- getEventKeyHardwareKeycode eventKey
 
     putStrLn "key press event:"
-    -- putStrLn $ "  type = " <> eventType
-    -- putStrLn $ "  str = " <> maybeString
-    -- putStrLn $ "  mods = " <> modifiers
-    -- putStrLn $ "  isMod = " <> isMod
-    -- putStrLn $ "  len = " <> len
-    -- putStrLn $ "  keyval = " <> keyval
-    -- putStrLn $ "  keycode = " <> keycode
     putStrLn ""
-
     pure True
 
 main :: IO ()
@@ -60,27 +51,13 @@ main = do
   img6 <- Gtk.imageNewFromFile $ home ++ "/.local/img/hibernate.png"
   img7 <- Gtk.imageNewFromFile $ home ++ "/.local/img/lock.png"
 
-
-  label1 <- Gtk.labelNew Nothing
-  Gtk.labelSetMarkup label1 "<b>Cancel</b>"
-
-  label2 <- Gtk.labelNew Nothing
-  Gtk.labelSetMarkup label2 "<b>Logout</b>"
-
-  label3 <- Gtk.labelNew Nothing
-  Gtk.labelSetMarkup label3 "<b>Reboot</b>"
-
-  label4 <- Gtk.labelNew Nothing
-  Gtk.labelSetMarkup label4 "<b>Shutdown</b>"
-
-  label5 <- Gtk.labelNew Nothing
-  Gtk.labelSetMarkup label5 "<b>Suspend</b>"
-
-  label6 <- Gtk.labelNew Nothing
-  Gtk.labelSetMarkup label6 "<b>Hibernate</b>"
-
-  label7 <- Gtk.labelNew Nothing
-  Gtk.labelSetMarkup label7 "<b>Lock</b>"
+  label1 <- Gtk.labelNew (Just "<b>Cancel</b>")
+  label2 <- Gtk.labelNew (Just "<b>Logout</b>")
+  label3 <- Gtk.labelNew (Just "<b>Reboot</b>")
+  label4 <- Gtk.labelNew (Just "<b>Shutdown</b>")
+  label5 <- Gtk.labelNew (Just "<b>Suspend</b>")
+  label6 <- Gtk.labelNew (Just "<b>Hibernate</b>")
+  label7 <- Gtk.labelNew (Just "<b>Lock</b>")
 
   btn1 <- Gtk.buttonNew
   Gtk.buttonSetRelief btn1 Gtk.ReliefStyleNone
@@ -107,7 +84,6 @@ main = do
   Gtk.widgetSetHexpand btn3 False
   on btn3 #clicked $ do
     putStrLn "User choose: Reboot"
-    -- callCommand "reboot"
     callCommand "sudo shutdown -r now"
 
   btn4 <- Gtk.buttonNew
@@ -151,7 +127,6 @@ main = do
 
   on win #keyPressEvent $ \keyEvent -> do
     key <- keyEvent `get` #keyval >>= keyvalToUnicode
-    -- putStrLn $ "Key pressed: ‘" ++ (chr (fromIntegral key) : []) ++ "’ (" ++ show key ++ ")"
     putStrLn $ "Key pressed: (" ++ show key ++ ")"
     if key == 27 then Gtk.mainQuit else pure ()
     return False
@@ -161,11 +136,6 @@ main = do
   Gtk.gridSetRowSpacing grid 10
   Gtk.gridSetColumnHomogeneous grid True
 
-  -- #keyPressEvent \(EventKey k) -> True <$ do
-  --   kv <- foo $ managedForeignPtr k
-  --   putStrLn $ "key pressed: 0x" ++ showHex kv ""
-  --   bool (return ()) G.mainQuit $ kv == 0x71
-
   #attach grid btn1   0 0 1 1
   #attach grid label1 0 1 1 1
   #attach grid btn2   1 0 1 1
@@ -174,10 +144,6 @@ main = do
   #attach grid label3 2 1 1 1
   #attach grid btn4   3 0 1 1
   #attach grid label4 3 1 1 1
-  -- #attach grid btn5   4 0 1 1
-  -- #attach grid label5 4 1 1 1
-  -- #attach grid btn6   5 0 1 1
-  -- #attach grid label6 5 1 1 1
   #attach grid btn7   6 0 1 1
   #attach grid label7 6 1 1 1
 
